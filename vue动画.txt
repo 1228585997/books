@@ -1,0 +1,71 @@
+.v-enter{
+		opacity: 0;
+		transform: translateX(100%);
+
+	}
+	.v-leave-to{
+		opacity: 0;
+		transform: translateX(-100%);
+		position: absolute;
+	}
+
+	 .v-enter-active,
+	 .v-leave-active{
+	 	transition:all 0.5s ease;
+	 }
+<transition name="router-slid" mode="out-in">
+			<router-view></router-view>
+</transition>
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-decoration: none;
+}
+.clearfix::after,.clearfix::before{
+	content:'';
+	display:table;
+	clear:both;
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+.ellipsis{
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
+.flex {
+	display: flex;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -o-flex;
+	display: -ms-flex;
+}
+.v-enter{
+		opacity: 0;
+		transform: translateX(100%);
+
+	}
+	.v-leave-to{
+		opacity: 0;
+		transform: translateX(-100%);
+		position: absolute;
+	}
+
+	 .v-enter-active,
+	 .v-leave-active{
+	 	transition:all 0.5s ease;
+	 }
+	 .router-slid-enter-active, .router-slid-leave-active {
+	     transition: all .4s;
+	 }
+	 .router-slid-enter, .router-slid-leave-active {
+	     transform: translate3d(2rem, 0, 0);
+	     opacity: 0;
+	 }
+
+</style>

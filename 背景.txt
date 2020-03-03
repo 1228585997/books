@@ -1,0 +1,112 @@
+background-attachment: fixed;
+    background-position: center 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+	css 说明 
+	
+	　　background-image:url("图片的网址"); 背景图 
+	
+	　　background: url(" 图片的网址 "); 背景 
+	
+	　　background-color:#色码; 背景色彩 
+	
+	　　Exp: 
+	
+	　　background-image:url(背景图案.jpg,gif,bmp); 
+	
+	　　background-color:#FFFFFF; 
+	
+	　　background-color : transparent; <--设定背景为透明色 
+	
+	　　background-repeat 改变背景图片的重复并排的设定 
+	
+	　　css 
+	
+	　　 说明 
+	
+	　　repeat 背景图片并排 
+	
+	　　repeat-x 背景图片以X方向 并排 
+	
+	　　repeat-y 背景图片以Y方向 并排 
+	
+	　　no-repeat 背景图片不 以并排的方式处理 
+	
+	　　Exp: 
+	
+	　　background-image:url("http://webdesign.chinaitlab.com/UploadFiles_8014/200903/20090323115920230.gif"); 
+	
+	　　background-repeat:no-repeat; 
+	
+	　　以http://webdesign.chinaitlab.com/UploadFiles_8014/200903/20090323115920230.gif这张图片为背景，当图片大小不够的时候，不并排重复 
+	
+	　　background-attachment是否固定图片位置 
+	
+	　　css 
+	
+	　　说明 
+	
+	　　scroll 拉动卷轴时，背景图片会跟着移动（缺省值） 
+	
+	　　fixed 拉动卷轴时，背景图片不会跟着移动 
+	
+	　　Exp: 
+	
+	　　background-image:url("http://webdesign.chinaitlab.com/UploadFiles_8014/200903/20090323115920230.gif"); 
+	
+	　　background-repeat:no-repeat; 
+	
+	　　background-attachment:fixed; 
+	
+	　　以http://webdesign.chinaitlab.com/UploadFiles_8014/200903/20090323115920230.gif背景图片不重复并列，且不随卷轴移动 
+	
+	　　以长度定位background-position: x y 
+	
+	　　使用百分比定位 background-position: x% y% 
+	
+	　　css 
+	
+	　　说明 
+	
+	　　x% 往右移 
+	
+	　　y% 往下移 
+	
+	　　backgroud-position: 0% 0%; 左边上方 
+	
+	　　backgroud-position: 0% 50%; 左边中间 
+	
+	　　backgroud-position: 50% 0%; 中间上方 
+	
+	　　backgroud-position: 50% 50%; 正中间 
+	
+	　　backgroud-position:100% 0%; 右边上方 
+	
+	　　backgroud-position: 0% 100%; 左边下方 
+	
+	　　backgroud-position: 100% 50%; 右边中间 
+	
+	　　backgroud-position: 50% 100%; 中间下方 
+	
+	　　backgroud-position: 100% 100%; 右边下方 
+	
+	　　以关键字定位 
+	
+	　　关键字 说明 
+	
+	　　top 上 ( y = 0 ) 
+	
+	　　center 中 ( x = 50, y = 50 ) 
+	
+	　　bottom 下 ( y = 100 ) 
+	
+	　　left 左 ( x= 0 ) 
+	
+	　　Exp: 
+	
+	　　background-position:center; 
+	
+	　　图片在指定背景中央X=50% Y=50%位置 
+	
+	　　background-position: 200px 30px
+	分类: Css

@@ -1,0 +1,85 @@
+// // 3种路由的传参方式
+
+// // 1、params
+
+//     // router-link   to     {name:'home',params:{x:1..}}
+//                     // $router.push()
+
+// // 2、query  path/name    参数会显示在url地址上，？后面?a=123
+
+// // 3、动态路由:匹配动态参数
+//     // 需要在路由path上配置匹配规则  :+ 匹配字段
+//     // 按照path规则定义url，才能跳转到当前路由
+//     // '/home/:id'    ==>   /home/  错误匹配
+//                          // /home/1  /home/dda  正确的匹配
+// // ---------------------------
+//     // 定义routerview <router-view></router-view>
+//     // 创建实例
+//         var router = new VueRouter({
+//             // 配置路由
+//             routes: [
+//                 {
+//                     path:'/...',
+//                     component: abc
+//                 }
+//             ],
+//             mode: 'hash'
+//         })
+// //  注册路由到Vue实例中
+//         new Vue({
+//             router:router,
+//         })
+
+
+// // ----------------------------------------------
+//         全局守卫    beforeEach   beforeResolve   钩子函数：afterEach
+//         独享守卫    beforeEnter
+//         组件内守卫  beforeRouteEnter beforeRouteUpdate  beforeRouteLeave
+
+//         beforeRouteUpdate 触发条件： 动态路由
+//         // 参数： to from next() == push()
+// // --------------------------------------------------
+
+//         // npm i -g @vue/cli（最新的版本3.11.0）
+//         // vue create appname
+//         // npm run serve  在哪里可以修改这个命令： 
+//         // 在package.json里的script配置项里修改
+//         // npm run build
+
+// // ------------------------------------
+//         // npm i --save vue-axios axios
+//         // import vue  from vue
+//         // import axios  from ‘axios’
+//         // import vueaxios  from ‘vue-axios’
+//         // vue.use(vueaxios,axios)
+//         // this.axios.get
+//         // this.$http.get()   返回值是一个promise对象
+//         // 所以  get().then().catch();
+//         // $.ajax('/get',success,error).show()
+
+//         new vuex.store({
+//             // 配置项
+//             state,
+//             getters,
+//             mutations,
+//             actions,
+//         })
+//         // 注： 要在vue里注册 store
+//         redirect(重定向) : 直接跳转到重定向的地址,url显示的是重定向的地址
+//         alias(别名)： 通过别名（可以为多个）[来跳转到path的路径下]
+// // --------------------------
+        // var arr = [];
+        // var arrcopy = [];
+        // for(let i=0; i<10;i++){
+        //     arr.push(parseInt(Math.random()*10))
+        // }
+        // arr.forEach((el)=>{
+        //     if(arrcopy.indexOf(el)==-1){
+        //         arrcopy.push(el)
+        //     }
+        // })
+        // arrcopy.sort(function(a,b){
+        //     return b-a
+        // })
+        // console.log(arrcopy);
+

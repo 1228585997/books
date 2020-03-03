@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				width: 15px;
+				height: 15px;
+				background:red;
+				border-radius:50%;
+				position:absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<button @click="btn=!btn">加入购物车</button>
+			<transition @before-enter="beforeenter" @enter="enter" @after-enter="afterenter">
+				<div class="box" v-show="btn"></div>
+			</transition>
+		</div>
+	</body>
+</html>
+<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	new Vue({
+		el:'#box',
+		data:{
+			btn:false
+		},
+		methods:{
+			//起始位置
+			beforeenter(el){
+				//console.log(el)
+				el.style.transform='translate(0,0)'
+			},
+			//去的位置
+			enter(el,done){
+				el.offsetWidth  //必须要有
+				el.style.transform='translate(150px,450px)'
+				el.style.transition='all 1s ease'
+				done()
+			},
+			afterenter(el){
+				this.btn=!this.btn
+			}
+		}
+	})
+</script>

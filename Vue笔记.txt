@@ -1,0 +1,1132 @@
+	vue笔记:李飞钒
+	xsmd
+	vue是mvvm框架渐进式框架
+	vue特性的是：具有虚拟dom
+	vue的核心是:数据驱动 组件系统 
+	model:代表数据模型,数据和业务逻辑都在model层中定义
+	view:代表UI视图,负责数据的展示。
+	viewmodel:负责监听model中数据的改变并且控制视图的更新,处理用户交互操作。
+	是一套用于构建用户界面的渐进式框架。
+	vue两个核心: 数据驱动 利用Object.definedProperty和存储属性 get(取值)和set（赋值 ）  保证数据和视图的一致性
+	            组件系统  模板初始数据 方法 生命周期
+	v-on:之前的叫指令名字
+	:之后的叫指令参数         
+	.之后的指令的修饰符修饰指令参数
+	attachEvent()之后采用冒泡形式来执行监听  
+	有点类似于addEventListener()的第三个参数 true
+	1、渐进式js框架         
+	 构建页面的框架，渐进式框架（渲染、组件系统、路由、状态管理，用到那一块的功能就直接用单个框架）2、两个核心       响应数据绑定、组合的视图组件　　vue不兼容ie8 : Object.defineProperty中的
+	setter/getter代理数据，监控对数据的操作
+	3、虚拟DOM4、MVVM 模式5、
+	声明式渲染	
+	6、组件化应用构建
+	vue.js优劣势:
+	优势:1.视图引擎（不需要操作dom）
+	2.数据的监听、
+	3.数据变更组件机制代码维护更适用于
+	4.前后端分离开发.
+	劣势：SEO
+		兼容性方面
+	安装:
+	cnpm i vue  
+	npm i vue
+	用法:
+	  1  直接引入  *
+	  2  框架式开发，vue-cli
+	mvvm框架由model view viewmodel 组成
+	{{}}双花括号 模板语法,模板输出       相当于原输出(innerText)
+	innerText可以解析标签 innerHTML不能解析标签只要标签里面的内容。
+	vue指令:
+	v-html ==>innerHTML
+	v-text==>innerText
+	v-show==>显示隐藏(只是简单的基于css切换)没有缓存,适合频繁切换
+	v-if==>条件判断,真实条件的渲染,只加载条件为真的部分有缓存,消耗高只适合偶尔判断。
+	v-else
+	v-on 事件绑定 v-on:click='' 简写@click=''
+	v-bind 属性绑定 简写:style{}一个对象用{}两个用数组:style[{},{}]
+	v-else-if
+	v-model 双向绑定三个修饰符.lazy(取代 input 监听change 事件) .number(输入字符串转为有效的数字) .trim(输入首尾空格过滤)
+	v-slot 	组件系统 插槽
+	v-pre 	不需要表达式跳过编译,不被渲染
+	v-cloak 不需要表达式页面渲染完成之后消失,需要配合css一起使用[v-cloak]{display:none;}
+	v-once  不需要表达式只渲染一次
+	v-for 循环数组和json对象等 v-for="(item,index)in obj" v-for="item in obj"
+	*数组  v-for="(i,$index) in arr"
+	*对象  v-for="(value,$key,$index) in json"
+	vue生命周期钩子函数
+	创建前 beforeCreate
+	创建后 created
+	渲染前 beforeMount 
+	渲染后 mounted
+	视图(view)更新前 beforeUpdate
+	视图(view)更新后 updated
+	销毁前 beforeDestroy
+	销毁后 destroyed
+	组件激活时调用 activated
+	组件停用时调用 deactivated
+	vue的内置组件
+	1.component
+	2.transition
+	3.transition-group
+	4.keep-alive
+	5.slot
+	v-bind
+	     :style
+	        :style="{color:'',}"
+	        :style="[{color:''},{color:''}]"
+	     :class
+	         :class="'a'"
+	          :class="['a','b']"
+	
+	--------------------------------------------------------------
+	侦听属性
+		watch可以监听data和computed
+		watch的监听直接定义函数其实是handler简写
+		deep属性可以深度检测到对象的改变
+		监听对象:
+		watch:{
+			deep:true,
+			handler(v){
+				console.log(v)
+			}
+		}
+	   watch
+	       -》针对一个变量进行监听
+	  watch:{ 
+	    name(修改后，修改前){
+	    }
+	  }
+	计算属性 特点:有缓存
+	     computed
+	       return
+	     computed:{
+			name(){}
+	  }
+	 注意事项:
+	 数组 json
+	  数组:1.通过下标改数值
+	  2.通过length改长度
+	  js方法 this.arr.splice(0,1,'hello')
+	  vue方法 this.$set(this.arr,0,'hello')
+	  this.$set(要改变的对象,位置,'替换的内容')
+	  length需要声明变量接受 let this.arr=this.arr.splice(0,2)
+	  json 无中生有
+	  this.$set(this.json,'替换的$key值','替换的内容')
+	  vue-resource部分
+	  get
+	      this.$http.get(url,{params:{}}).then((data)=>{},(err)=>{})
+	  post
+	     this.$http.post(url,{key:value},{emulateJSON:true}).then((data)=>{},(err)=>{})
+	  jsonp
+	     this.$http.jsonp(url,{params:{},callback:'name'}).then((data)=>{},(err)=>{})
+	  computed 可以计算属性计算咋们的data
+	  属性必须是函数
+	  c(){
+	  	return
+	  }
+	  c(){
+	  	//读取
+	  	get(){}
+	  	设置
+	  	set(){}
+	  }
+    事件冒泡:逐级向上传播 document<html<body<div
+    事件捕获:document>html>body>div
+    @click.prevent   阻止默认事件  列如 a标签跳转 ==>preventDefault()
+    @click.stop      阻止冒泡  阻止事件向上级DOM传递     stop ==>event.StopPropagation()
+    @click.capture   捕获冒泡，即有冒泡发生时，有该修饰符的dom元素会先执行，如果有多个，先从外到内依次执行，然后再按自然顺序执行触发的事件  ====> addEventListener()的第三个参数 true       true 捕获  false 冒泡 
+    @click.self：将事件绑定到自身，只有自身才能触发，通常用于避免冒泡事件的影响 ==> event.target
+    @click.once：设置事件只能触发一次，比如按钮的点击等 ==>执行一次监听事件 执行完以后 removeEventListener
+    @click.passive 执行默认方法
+    watch+computed---------------------------------------------------------------------------------------
+    computed:{
+        必须有 return  必须是操作data里的值
+        两个钩子函数  get() 和 set()  并且set有一个参数来获取set值
+        computed本身是一个对象
+    }
+    computed和methods区别{
+        computed只在初始化时(创建vue时)被调用  methods会在数据变化时被调用 
+        computed具有缓存性，页面重新渲染值不变化,计算属性会立即返回之前的计算结果，而不必再次执行函数
+		计算只计算修改的部分
+		methods需函数调用，重新计算
+		computed和methods都可以被动态的改变
+    }
+    watch:{           当监听一个对象改变时 普通的watch无法监听到对象内部属性的改变  只有data中的数据才能够被监听到
+                        此时就 deep:true    
+                        是观察的动作.020
+                        无缓存性，页面重新渲染时值不变化也会执行
+
+        firstName(newName,oldName){
+            
+        },
+        '要监听的对象':{handler(修改后,修改前){}}
+    }
+	props通过数组来传递只能定义属性名
+	type可以是以下原生类型：
+	String
+	Number
+	Boolean
+	Function
+	Object
+	Array
+	Symbol
+	//实例方法
+    vm.$watch(function(){
+        要监听的值
+    },function(){
+        监听后要执行什么东西
+    },{
+        deep:true
+    })
+    debugger 代码卡断点
+
+    自定义指令-------------------------------------------------------------------------------------------
+    全局注册:directive
+        Vue.directive('指令的名称不带v',{全局的在Vue里注册 可以全局使用
+            bind(el,binding){
+                el==> 指令所绑定的元素 可以直接操作DOM
+                binding 我的指令信息
+                        binding.name ==>指令名不包括前缀v
+                        binding.value ==>指令的绑定值 如:v-directive="1 + 1", value 的值是 2
+                        binding.expression==> 指令的表达式或变量名 v-directive="1 + 1", expression 的值是 1+1
+                        binding.arg ==> 指令的参数 :冒号 之后的 如 v-directive:foo, arg 的值是 "foo"
+                        binding.modifiers==>指令的修饰符 .点 之后的  如 v-directive:foo.top modifiers 的值是 {foo:true,too:true} 可以判断 top 
+            },
+            inserted(){被绑元素插入父节点时调用}        相当于生命收起的 created
+            update(){},                                               mounted
+            unbind(){只调用一次,指令与元素解绑时调用} 
+        })
+		// 全局方法 directive
+		// v-on:click.slef=""
+		// Vue.directive('指令名',function(){});
+		// 1、指令名 on show if
+		// abc   v-abc
+		// 2、钩子函数
+		// 指令是通过一些规则来操作dom的 
+		// 钩子函数的第一个参数是dom对象(原生dom对象) el
+		// 钩子函数第二个参数 binding
+		// 指令名、指令参数、指令修饰符、指令表达式、指令的值
+		// name     arg     modifiers expression   value
+		// 钩子函数
+		// bind()   inserted()  update()
+		// unbind()  componentUpdated()
+		// 如果定义的指令参数是一个回调函数，
+		// 那表示bind和update的简写
+		// 全局注册指令 在vue挂载点的任何地方可以使用
+		// Vue.directive('color',function(el,binding){
+		//     console.log(1);
+		//     el.style.color= binding.value;
+		// })
+		Vue.directive('color',{
+		    bind(el,binding,vnode,oldvnode){
+		        console.log(vnode);
+		        el.style.color= binding.value;
+		    },
+		    inserted(el,binding){
+		    },
+		    update(el,binding){
+		        el.style.color= binding.value;
+		    }
+		});
+		// 模拟一个v-cloak1
+		// Vue.directive('cloak1',{
+		//     bind(el,binding){
+		//         el.setAttribute(binding.rawName,'')
+		//     }
+		// });
+		new Vue({
+		    el:'#app',
+		    data() {
+		        return {
+		            msg:'red'
+		        }
+		    },
+		    mounted() {
+		        this.$el.removeAttribute('v-cloak1')
+		    },
+		})
+    局部注册: directives
+        var vm = new Vue({
+            el:'#box',
+            directives:{
+                '指令名称':{
+                    bind(el,binding){
+						console.log(el)
+                    }
+                }
+            }
+        })
+ // 组件的命名规则、事件的命名规则、prop的命名规则
+        // s a n fn o
+        // 组件的命名规则: 使用必须都是小写
+        //              定义： 驼峰形式、短杠形式（kebab-case或者PascalCase）
+        // 因为一个单词可能会跟原生dom标签冲突
+        // kebab-case或者PascalCase   => 全部小写，驼峰形式就会加杠
+        // prop的命名规则(同上) 
+        // 事件命名 ： 必须是kebab-case形式命名，全部小写
+        // Vue.component('test-abc',{
+        //     template:'<h1>abc</h1>'
+        // })
+
+        // props 通过数组来传递只能定义属性名， （很low）
+        // 验证： 
+        // type:Number string object、array function boolean Date Symbol()
+        // required : true false
+        // validator:  回调函数 return（true false）
+        // default : 默认值，如果是array、object的话，必须是函数返回值
+			
+        // 动态绑定特性值
+        //     1、引用类型时，子组件中更改相应的属性会导致父组件相应属性的更改
+        //     2、基本类型时，子组件中更改这个属性会报错，加上.sync修饰符
+        // 但是：一般来说，是不建议在子组件中对父组件中传递来的属性进行操作的
+        //     1、基本类型值，在子组件中创建一个新的data或computed，并以传递进来的值进行初始化，之后就可以操作这个新的属性了
+        //     2、引用类型值，最好是对引用类型进行复制。复杂的情况，肯定应该是深复制
+		/在自定义组件里，不带参数的 v-bind，
+		// 相当于传入一个对象的所有属性
+		// v-model :value + @input
+		// 组件里的model含义：
+		// 相当于把value 属性改为 prop的值
+		// 把input事件改为 event对应的值
+		// 非prop类型的属性:会采用覆盖策略替换掉已有的属性
+		// class、style除外。 ： 采用的合并策略
+		// 禁用特性inheritAttrs: false
+		
+		// 插槽作用域
+		    // <template v-slot:a="b">c</template>
+		    // b: {a:{},b:{}}    <slot name="a" :a :b></slot>
+			// 实例方法 $watch
+			// vm.$children[0].$watch('num')
+			
+			// $refs  来存储dom对象或者是vue实例对象
+			// $children =》 [vueComponent]  
+			// $parent   =>  VueComponent | vue实例
+			// $root  =》 vue根实例
+			
+			// $nextTick  => 局部的update
+			// data改变 》 虚拟dom改变   》 渲染到dom上  (有时间的延迟)
+			// this.na = 2
+			// udpate(){
+			//     // document.getelementById('mydiv').innnerText  =  2
+			// }
+			// this.$nextTick(function(){
+			//     // document.getelementById('mydiv').innnerText=2
+			// })
+    过滤器----------------------------------------------------------------------------------------------
+    Vue.filter('过滤器名称',function(data){
+        
+    })
+                | 管道符
+    {{xxx | phone}}
+    var vm = new Vue({
+        el:'#box',
+        data:{
+            xxx:''
+        },
+        filters:{
+            phone(value,参数，参数){} value 就是data里定义的值
+        }
+    })
+	//  forEach  map  reduce filter sort
+	// vue  filter
+	// 过滤一条data、computed
+	// Vue.filter   Vue.directive
+	// 过滤器  | （管道符）
+	//  computed 与 filter 的区别
+	// filter可以动态传入过滤内容
+	// filter的使用场景： 如果大量数据需要同一种规则改变的话，使用
+	// filter使用的地方
+	// {{}}   /  动态bind的引号里
+	// filter可以传参
+	// data | filtername('filterArg1','filterArg2',...)
+	// 接受参数就是通过filter的第二参数，一次类推
+	// 第一个参数是要过滤的值
+	// filter可以串联使用（链式调用）
+	// data | filtername() | filtername
+	// $.show().hide()   // return this
+	
+
+    组件 -------------------------------------------------------------------------------------------------
+    全局组件  一个组件的 data 选项必须是一个函数return出去一个对象
+	  data(){
+		retun {}
+		}
+	因此每个实例可以维护一份被返回对象的独立的拷贝：
+			<div id="box">
+				<leo></leo>
+			</div>
+			<template id="item">
+			//根元素必须要有
+			    <div>
+			        <slot class="name"></slot>
+			    </div>
+			</template>
+			Vue.component('leo'{
+				template:"#item"
+				data(){
+					retuan{
+						
+					}
+				}
+			})
+	局部组件
+		<div id="box">
+			<leo></leo>
+		</div>
+		<template id="item">
+			<div>
+				{{arr}}
+			</div>
+		</template>
+		new Vue({
+			el:'#box'
+			components{
+				leo:{
+					template:'#item',
+					data(){
+						retuan{
+							arr:[]
+						}
+					}
+				}
+			}
+		})
+            v-model ==> :value + @input
+              //      
+            <div id="box>
+                <lee></lee>
+
+                      <slot name="name"></slot> 插槽
+
+            <div>
+            <template>
+                <div>
+                    <slot class="name"></slot>
+                </div>
+            </template>
+            v-bind 通过绑定可以把父组件的东西传入到子组件中
+            props:["",""] 子组件接收父组件 
+            $emit('事件',参数) 子组件传给父组件
+            v-on
+			//全局注册组件
+			组件
+			必须有根元素
+			特别注意:组件中的data必须是一个函数return出去一个对象
+			data(){
+				return{
+					a:'hello'
+				}
+			}
+			组件使用
+            Vue.component('lee',function(){        
+                template:'<div></div>',     template==>模板属性展示HTML结构的
+                props:[],接受box里面的 值
+				组件中的data必须是一个函数return出去一个对象
+                data(){
+                    return {
+                        必须return  一次更新
+                    }
+                }
+                $emit() 自组建触发 外面监听的值  要触发的事件名  要传递的参数
+            })
+			实例方法
+			$mount('')这个级别没有咱们的el高
+			$data 就是data
+			$el 可以帮咱们获取原生的dom对象
+			$options 获取自定义属性/正常属性
+			$log可以帮助我们看到data的内容
+			$destroy销毁对象
+			track-by="$index"
+			mount挂载vm.$mount('#app')
+			.销毁vm.$destroy()
+			刷新实例vm.$forceUpdate()
+			更新后的操作vm.$nextTick(function(){})
+			数据同步
+			<complate>标签
+			is属性是哪个组件就把名字给is属性即可
+			组件是可以无限去套组件的,只能套自己下面的第一层组件
+			第三层只能用第2层套
+			父子级数据交互
+			父级传子级
+			需要一个自定义属性
+			<fuj :leo="msg"></fuj>
+			props:['leo']
+			props:{
+				leo:Number/String/Object
+			}
+			如果父级传对象 就是js的对象的引用
+			不同步:让父级数据不是对象即可
+			//过滤了
+			数据交互方式
+			1.外部单放一个实例化对象
+			let vm=new Vue()
+			vm.$emit('key',value)
+			触发当前实例上的事件。附加参数都会传给监听器回调。
+			key 人家回头接受的名字
+			valve 你传递的数据
+			vm.$on('key',(data)=>{
+			})
+			key:接受的名头
+			函数里面data:就是刚才传递的数据 回调函数
+			slot 组件-位置咱们的组件可以放人任何html代码
+			当然你要想让他们实现的话,需要你在组件里面使用slot标签
+			这个标签就替代了你组件中的html代码
+			更精准的话
+			slot="自定义值"
+			<slot name=""> 
+			// 组件插槽 slot
+			  // 具名插槽 slot  name
+			  // v-slot:插槽名 （template or component）
+			  // 默认插槽，未指定名字的内容都会统一放入到默认插槽里
+			  // 默认插槽 默认名字：default
+			  // 动态组件  <component> 
+			     / <component> 通过is=“组件名||组件的选项对象”属性指向组件
+			   // 作业： 封装 el-slider 组件
+{{$route.path}}查看路由地址 history.pushstate()
+    ----------------------------------------------
+    vue-cli
+    		src里的文件夹:
+    					assets 静态资源
+    					components 放组件的文件夹
+    					router 路由配置文件夹
+    					app.vue 应用主组件
+    					main.js 入口文件
+    					
+    		项目的 src 里最初的App.vue 是根实列  如果页面布局 所有的模块都要引入到 App.vue 
+    					引入方式   import 名字 from  './xxx/xxx'
+    项目执行：
+    cnpm install vue-cli -g 全局安装 vue-cli
+    vue list 查看版本号
+	vue init simple  简单
+    vue init webpack  "项目名称"  太过于复杂
+	vue init webpack-simple 项目名称 
+	加点
+ output: {
+    path: path.resolve(__dirname, './dist'),
+    publicPath: './dist/',
+    filename: 'build.js'
+  },
+	
+    cnpm install  项目依赖
+    cnpm run 项目的名字  运行项目
+    npm run bulid 项目打包
+	获取IP地址真机测试
+			ipconfig  
+	安装命令： npm install -g @vue/cli   按照最新版本 3.X
+	vue --version  
+	3.x命令
+	    vue create 项目名
+	创建好的目录结构：
+	    .git 文件夹  git本地版本库 （勿动）
+	    node_modules :  依赖包
+	    public  ： 静态资源、 index入口文件
+	    src ： 逻辑代码
+	    .gitignore    :git提交时忽略的文件
+	    babel.config.js    : babel配置文件
+	    package.json     : npm的配置文件
+	    package-lock.json  : （勿动）
+	    README.md         : 项目的帮助文档
+    路由----------------------------------------------
+            1、安装,引入  vue-router.js
+            2、在模块里放置 <router-view>自定义组件
+            3、new VueRouter 实例对象==> var router
+            4、配置构建选项 routes、mode.......
+            5、把router实例注册到vue跟实例中
+			路由重点
+			<router-view></router-view>(url对应的组件，将替换掉该组件，即该组件不会显示到页面中)
+		<router-link to="/" tag="li">,该标签渲染到页面中时会被a标签替换，to中将会是替换后的url
+		，tag可以改变渲染后router-link的结果（可以改变成为其他标签，通过js实现相应的链接跳转），
+		激活状态的链接会具有router-link-active(该类名不够精确)---》
+		推荐使用router-link-exact-active来为激活状态的标签添加对应的类名
+		linkExactActiveClass:'active',通过该全局配置，
+		实现类名的替换var router=new VueRouter({//new VueRouter大括号中为全局配置 linkExactActiveClass})
+		点击对应router-link标签，to到新的url后，显示对应的组件
+，实现页面的跳转（数据的改变）但域名不会改变
+动态路由:
+配置路由时可以使用动态路由{path:"/a/:id"}
+通过$route.params.id来获取对应的id，根据id获取数据，并改变显示内容
+            <router-view> 路由的组件 配置都渲染到这里面
+            <router-link to="路由连接"> 跳转路由
+			路由: 特别注意子级路由路径不加/
+			routes名字比较敏感
+			<router-link to="/自定义名字">
+			1.创建模板
+			2.配置路由必须是数组注意必须名字叫routes
+			3.生成路由 let router=new VueRouter({})
+			4.启动路由
+			<router-link to="/地址"></router>	
+			<router-view></router-view> 
+			//视图非常重要
+			// 1.创建模板
+				let home={
+					template:'<p>我是主页</p>'
+				}
+				let news={
+					template:'<p>我是新闻页</p>'
+				}
+				let games={
+					template:'<p>我是游戏页</p>'
+				}
+				// 2.配置路由是个数组
+				let routes=[
+					{path:'/home',component:home},
+					{path:'/news',component:news},
+					{path:'/games',component:games}
+					//设置默认页数redirect重定向
+					{path:'/',redirect:'/news'}
+				]
+				// 3.生成路由
+				let router=new VueRouter({
+					routes                       
+				})
+				// 4.启动路由
+				new Vue({
+					el:"#box",
+					router 
+				})
+				特别注意:2级路由不加/
+				选中的路由有个class 
+				router-link-exact-active
+				This.$router访问路由（实例），this.$route访问当前路由（信息）实例方法($router)：
+				replace/go/push...当前路由信息（$route）：params、query、path...
+        路由传参:{{$route.path}//查看路由路径
+            id匹配路由的时候用$route可以通过watch监听
+            (1):<router-link :to="{name:'路由地址',params:{参数}}"> 路由传参
+            (2):this.$router.push({
+                name:'hello', 
+                params:{user:'asdpcas'}
+            }) 必须通过name跳转
+            (3):query: 接受参数用 $router
+					{path: ' 路由 ',query: {key: value}
+                    地址栏 铭文传参 相当于get 把参数拼接在?后面
+                    <router-link :to="{name:'0',query:{参数}}">
+                    $router.push({name:'',query:''})
+                和to是一样的
+				 用params传参，F5强制刷新参数会被清空，用query，
+				 由于参数适用路径传参的所以F5强制刷新也不会被清空。
+				 （传参强烈建议适用string
+            name：就是我们在路由配置文件中起的name值。
+            params：就是我们要传的参数，它也是对象形势，在对象里可以传递多个值传递参数传递参数
+			用$route.params.id
+			1.
+			this.$router.push({ path:url});
+			2.使用前需确定在定义路由时定义了name
+			this.$router.push({ name:'需要跳转的路由name'});
+			1.
+			 //  router实例
+			        // name 路由名字，可以通过name来跳转路由
+			        // components 可以通过name来渲染多个不同组件
+			        // redirect 重定向到新的地址下
+			        // alias： 地址的别名/ 也需要定义成路径格式
+			        //children 嵌套路由、组件渲染到父级router-view上，
+			            // 路由path配置不需要加 /  
+			        // 动态路由：
+			        // https://www.test.com/index   小说的目录页
+			        // https://www.test.com/index/1
+			        // https://www.test.com/index/2
+			        // 在path上定义：+ 匹配的key  
+			        // 在params上可以展示动态路由匹配到的参数
+			        // 可以串连
+			        // * 通配符   
+					{
+						path:"*",
+						redirect:'/home'
+					}
+			        // 路由配置是有优先级关系的（从上到下）
+			        // 一般用于 404页面   通常放到路由配置的最下面
+
+			// 路由通过query来传参
+			            // 1、to="/abc?xyz=123"
+			            // 2、:to="{path:'/abc',query:{xyz:1}}"
+			            // 3、 $router.push('/abc?xyz=123')
+			            // 3、 $router.push({path:'/abc',query:{xyz:1}})
+			        // params传参
+			            // 1、:to="{name:,params:{}}"
+			            // 2、 $router.push({name:,params:{}})
+			        // 注： 如果要用params 传参的话必须用name跳转
+			        // router-link-active: 连接激活时添加的类名，可以通过active-class属性设置
+			        // replace属性： $router.replace()
+			        // 无属性的的话： $router.push();
+			        // router.push     跳转添加历史记录
+			        // router.replace  跳转不添加历史记录
+			        // router.go       跳转到某一条记录
+			        // router.back  返回
+			        // router.forward  前进
+			        // router.addRoutes  动态添加路由配置
+			传递
+			this.$router.push({name:'路由name',params:{search:value}})
+			获取 -
+			this.$route.params.search
+			2.通过path携带的参数
+			传递
+			this.$router.push({ path: '路由url'+id})
+			获取
+			 this.$route.params.id
+			注意此方法使用时需在路由path中配置   /:id
+			{
+			 path: 'myadmexp/details/:id'
+			}
+			3.通过query来传递参数，使用此方法传递的参数会出现在url地址中
+			传递
+			this.$router.push({ name:'name',query:{id:code,id2:code2}});
+			获取
+			this.$route.query.id;
+			this.$route.query.id2
+			在路由配置文件里以:冒号的形式传递参数，这就是对参数的绑定。
+             routes 里面配置的
+             path: / 根路径 "路由地址"
+             component?: <router-view>里面渲染的东西 返回的是全局的东西   var abc =  Vue.component({})
+             name:'路面名字'
+             props:跳转路由传的参数
+             $route.fullPath
+             redirect:重定向  匹配到的地址重新跳转到另一个路由下
+             alias: 多个路径跳转到一个路由单个"" 多个[""]
+             children 子路由
+             1. path -> 是要跳转的路由路径,也可以是路由文件里面配置的 name 值,两者都可以进行路由导航
+              2. params -> 是要传送的参数,参数可以直接key:value形式传递
+              3. query -> 是通过 url 来传递参数的同样是key:value形式传递
+			1.params优势 ：优势：传参优雅，传递参数可传对象；
+				缺点：刷新地址栏，参数丢失
+				2.优势 ： 刷新地址栏，参数依然存在
+				缺点:只能传字符串，并且，如果传的值太多的话，url会变得长而丑陋。
+				query路由传参--------params和query的区别
+				背景：项目中需要跨页面传值，如试题id,遇到了刷新后，传的值消失，所以研究了以下两者的区别
+				1.params只能用name来引入路由，query用path/name来引入
+				2.params类似于post，query更加类似于我们ajax中get传参，说的再简单一点，前者在浏览器地址栏中不显示参数，
+				后者显示，所以params传值相对安全一些。
+				3.取值用法类似分别是this.$route.params.name和this.$route.query.name。
+				4.params传值一刷新就没了，query传值刷新还存在
+           	 import Router from 'vue-router'
+             var routes = [{}]
+             exports default new '引入的变量名 Router'  ({暴露出去  路由的配置名 routes}) 
+
+            通过方法跳转和传参
+            $route: 路由信息
+            $router 实例对象
+        ................................................................................
+		自定义指令
+		//注册
+		Vue.directive('my-directive', {
+		  bind: function () {},
+		  inserted: function () {},
+		  update: function () {},
+		  componentUpdated: function () {},
+		  unbind: function () {}
+		})
+		// 注册 (指令函数)
+		Vue.directive('my-directive', function () {
+		  // 这里将会被 `bind` 和 `update` 调用
+		})
+		
+		// getter，返回已注册的指令
+		var myDirective = Vue.directive('my-directive')
+		2.x脚手架
+		simple  入门
+		webpack 严谨做一些查错
+		webpack-simple
+		1）simple模板较简单，意义不大；
+		2）webpack-simple模板没有过强的js语法检测（推荐使用）;
+		3）webpack模板含有较强的语法检测，使用起来比较繁琐。
+------------------------------------------------------\
+
+	动画：
+			<transition name="abc">
+					name = v 默认是v
+					abc-enter
+					enter-active-class="动画名"
+			</transition>
+			<transition name="test" appear mode="in-out" :duration="10000">
+			    <component :is="name"></component>
+			</transition>
+			状态A-->状态B
+			// 过渡动画组件：<transition>
+			// vue过渡必须发生在单元素的状态切换上
+			//  v-if  v-show component（动态组件） <router-view>
+			// 类名的定义： name + -enter enter-to enter-active
+			                    //-leave -leave-to -leave-active
+			
+			// appear  首次出现应用动画过渡
+			
+			// mode : 必须是两个元素在切换
+			//  out-in   in-out   先进后出   先出后进
+			// :duration="1000"  延迟动态绑定
+			// 第三方动画库
+			// 添加transition属性： enter-active-class  leave-active-class
+			
+			    v-enter:元素初始状态 是进入之前，元素的起始状态，此时还没有开始进入
+
+			    v-enter-to:动画结束后状态	是动画离开之后，离开的终止状态，此时元素动画已经结束了
+
+			    v-enter-active:动画过渡过程，用来定义动画时间、延迟、曲线函数
+			状态B-->状态A
+			    v-leave:返回动画执行前状态
+			    v-leave-to:返回动画执行后状态
+			    v-leave-active:返回动画过渡过程，用来定义动画时间、延迟、曲线函数
+			    vue动画
+			    name="自定义的名称"
+			    <transition name="自定义的名称">
+			    </transition>
+			    自定义的名称-enter
+			    fade-enter 进入之前的状态
+			    fade-enter-active 进入之后的状态
+			    fade-leave 消失之前的状态
+			    fade-leave-active 消失的状态
+			    动画的生命周期
+			    before-enter进入之前
+			    enter进入时
+			    after-enter动画进入完毕
+			    before-leave动画要离开了
+			    leave动画离开的过程中
+			    after-leave动画离开完毕
+				:duration="1000" 延迟
+				appear 特性设置节点在初始渲染的过渡
+				多个动画使用必须要有:key
+				<transition-group tag="ul"  enter-active-class="bounceIn animated">
+				    <li v-for="(i,$index) in img" v-show="$index==index" :key="$index"><img :src="i"></li>
+				</transition-group>
+				/ 过渡动画组件：<transition>
+				// vue过渡必须发生在单元素的状态切换上
+				//  v-if  v-show component（动态组件） <router-view>
+				// 类名的定义： name + -enter enter-to enter-active
+				               //-leave -leave-to -leave-active
+				
+				// appear  首次出现应用动画过渡
+				// mode : 必须是两个元素在切换
+				//  out-in   in-out   先进后出   先出后进
+				// duration................................................................................................................................................................................................
+				// 第三方动画库
+				// 添加transition属性： enter-active-class="动画名 animated"  leave-active-class
+-----------------------------------------------
+	vuex
+	Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。
+	它采用集中式存储管理应用的所有组件的状态，
+	并以相应的规则保证状态以一种可预测的方式发生变化
+	
+	什么是“状态管理模式”？
+	什么情况下我应该使用 Vuex？
+	
+	Vuex VS 单纯的全局对象
+	    1、Vuex 的状态存储是响应式的
+	    2、为什么通过提交mutation方式改变state，是想要更明确地追踪到状态的变化
+	
+	由于 store 中的状态是响应式的，在组件中调用 store 中的状态简单到仅需要在计算属性中返回即可。触发变化也仅仅是在组件的 methods 中提交 mutation。
+
+		dispatch 异步操作 this.$store.dispatch('actions方法名',值)
+		commit 同步操作 this.$store.dispatch('mutations方法名',值)
+		state：数据所有的原始数据
+		getters： --计算属性computed 跟我的state相关   Getter-Module
+		mutations：修改状态，并且是同步的。在组件中使用$store.commit('',params:{})。这个和我们组件中的自定义事件类似。
+		actions：异步操作。在组件中使用是$store.dispatch('')
+		modules：外部的模板 
+			modules--->	getters-->state 控制
+			// 全局的data
+			    // 调用：$store.state.值
+			    // 一般state状态都会通过computed来获取
+				// 全局的computed
+				    // 调用：$store.getters.值
+				    // 注： getters需要参数state（不是this），和computed一样有return
+					
+					// 相应于全局的methods
+					    // 执行调用： this.$store.commit('mutations')
+					    // commit第二个参数是mutations的第一个传参
+						    // 异步调用的mutations
+						    // 调用 $store.dispatch('actions')
+		---------------------------------------------------------------------
+		git
+		cd g: 跳转到那个盘
+		git clone 版本库地址 //把版本库从远程复制到本地
+		git remote -v //查看远程版本库地址 
+		git status //查看git状态 
+		git add .修改的文件 // .：全部文件 =>某个文件  (从红色状态变绿)
+		git commit -m '提交的描述信息' 
+		git push //提交远程版本库 
+		Git pull //拉取远程版本库
+		git init 可以指定仓库（版本库）
+		git add 往清单里面放内容
+		git log 查看版本库的内容
+		git reset还原版本命令
+		git reflog 查看命令历史
+		git checkout --file
+		git rm 删除文件
+		
+		
+		
+		git reset HEAD <file>... //撤销暂存的修改
+		git checkout <file> // 撤销commit   // 切换分支
+		
+		https://www.liaoxuefeng.com/wiki/89604348802         9600/896954848507552
+		...............................
+		导航守卫
+		/ next();
+		    //  类似于push
+		    // 1、path路径
+		    // 2、对象｛path，name｝
+		    // 3、false 》 禁止通过
+		  // 全局守卫： 
+		  // beforeEach  ：所有路由。跳转之前触发的守卫
+		  // beforeResolve
+		  // afterEach (钩子函数)
+		  // 独享守卫
+		    // beforeEnter
+		
+		  // beforeRouteEnter 渲染组件之前
+		  // beforeRouteUpdate
+		  // beforeRouteLeave  离开组件之前
+		// 导航被触发。
+		// 在失活的组件里调用离开守卫。
+		// 调用全局的 beforeEach 守卫。
+		// 在重用的组件里调用 beforeRouteUpdate 守卫 (2.2+)。
+		// 在路由配置里调用 beforeEnter。
+		// 解析异步路由组件。
+		// 在被激活的组件里调用 beforeRouteEnter。
+		// 调用全局的 beforeResolve 守卫 (2.5+)。
+		// 导航被确认。
+		// 调用全局的 afterEach 钩子。
+		// 触发 DOM 更新。
+		// 用创建好的实例调用 beforeRouteEnter 守卫中传给 next 的回调函数。
+		  
+		vue-axios是基于vuejs 的轻度封装
+		
+		安装 配置vue-cli 配置参考devServer
+		npm install --save axios vue-axios
+		import Vue from 'vue'
+		import axios from 'axios'
+		import VueAxios from 'vue-axios'
+		Vue.use(VueAxios,axios)
+		
+		使用
+		Vue.axios.get(api).then((response) => {})   //全局方法
+		this.axios.post(api).then((response) => {})  //实例方法
+		this.$http.get(api).then((response) => {})  // 实例别名
+		在你提交的代码中，prop 的定义应该尽量详细，至少需要指定其类型。
+		props: {
+		  status: String //限制数据类型
+		  required: true //当前属性是必传的值
+		}
+		type:限制外部数据的类型
+		default:默认值 当父组件没有给子组件传递值得时候用默认值
+		required：当前属性是必传的值
+		// 更好的做法！
+		props: {
+		  status: {
+		    type: String,
+		    required: true,
+		    validator: function (value) {
+		      return [
+		        'syncing',
+		        'synced',
+		        'version-conflict',
+		        'error'
+		      ].indexOf(value) !== -1
+		    }
+		  }
+		}
+		在组件上总是必须用 key 配合 v-for，以便维护内部组件及其子树的状态。甚至在元素上维护可预测的行为，比如动画中的对象固化 (object constancy)，也是一种好的做法。
+		<ul>
+		  <li
+		    v-for="todo in todos"
+		    :key="todo.id"
+		  >
+		    {{ todo.text }}
+		  </li>
+		</ul>
+		为组件样式设置作用域
+		1.这条规则只和单文件组件有关。你不一定要使用 scoped或者Modules特性。
+		<!-- 使用 `scoped` 特性 -->
+		2.<!-- 使用 CSS Module--> :class=[$style.ckass类名] cli
+		3.自己约定类名 [mycomponent-]
+		<style module> 
+		</style>
+		12、谈谈你对 keep-alive 的了解？
+		<!-- 基本 -->
+		<keep-alive>
+		  <component :is="view"></component>
+		</keep-alive>
+		keep-alive 是 Vue 内置的一个组件，可以使被包含的组件保留状态，避免重新渲染 ，其有以下特性：
+		•一般结合路由和动态组件一起使用，用于缓存组件；
+		•提供 include 和 exclude 属性，两者都支持字符串或正则表达式， include 表示只有名称匹配的组件会被缓存，exclude 表示任何名称匹配的组件都不会被缓存 ，其中 exclude 的优先级比 include 高；
+		•对应两个钩子函数 activated 和 deactivated ，当组件被激活时，触发钩子函数 activated，当组件被移除时，触发钩子函数 deactivated。
+		Vue 组件间通信是面试常考的知识点之一，这题有点类似于开放题，你回答出越多方法当然越加分，表明你对 Vue 掌握的越熟练。Vue 组件间通信只要指以下 3 类通信：父子组件通信、隔代组件通信、兄弟组件通信，下面我们分别介绍每种通信方式且会说明此种方法可适用于哪类组件间通信。
+		
+		（1）props / $emit 适用 父子组件通信
+		
+		这种方法是 Vue 组件的基础，相信大部分同学耳闻能详，所以此处就不举例展开介绍。
+		
+		（2）ref 与 $parent / $children 适用 父子组件通信
+		•ref：如果在普通的 DOM 元素上使用，引用指向的就是 DOM 元素；如果用在子组件上，引用就指向组件实例
+		•$parent / $children：访问父 / 子实例
+		
+		（3）EventBus （$emit / $on） 适用于 父子、隔代、兄弟组件通信
+		
+		这种方法通过一个空的 Vue 实例作为中央事件总线（事件中心），用它来触发事件和监听事件，从而实现任何组件间的通信，包括父子、隔代、兄弟组件。
+		
+		（4）$attrs/$listeners 适用于 隔代组件通信
+		•$attrs：包含了父作用域中不被 prop 所识别 (且获取) 的特性绑定 ( class 和 style 除外 )。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 ( class 和 style 除外 )，并且可以通过 v-bind="$attrs" 传入内部组件。通常配合 inheritAttrs 选项一起使用。
+		•$listeners：包含了父作用域中的 (不含 .native 修饰器的) v-on 事件监听器。它可以通过 v-on="$listeners" 传入内部组件
+		
+		（5）provide / inject 适用于 隔代组件通信
+		
+		祖先组件中通过 provider 来提供变量，然后在子孙组件中通过 inject 来注入变量。 provide / inject API 主要解决了跨级组件间的通信问题，不过它的使用场景，主要是子组件获取上级组件的状态，跨级组件间建立了一种主动提供与依赖注入的关系。
+		
+		（6）Vuex 适用于 父子、隔代、兄弟组件通信
+		
+		Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。每一个 Vuex 应用的核心就是 store（仓库）。“store” 基本上就是一个容器，它包含着你的应用中大部分的状态 ( state )。
+		•Vuex 的状态存储是响应式的。当 Vue 组件从 store 中读取状态的时候，若 store 中的状态发生变化，那么相应的组件也会相应地得到高效更新。
+		•改变 store 中的状态的唯一途径就是显式地提交 (commit) mutation。这样使得我们可以方便地跟踪每一个状态的变化。
+		•State：定义了应用状态的数据结构，可以在这里设置默认的初始状态。
+		•Getter：允许组件从 Store 中获取数据，mapGetters 辅助函数仅仅是将 store 中的 getter 映射到局部计算属性。
+		•Mutation：是唯一更改 store 中状态的方法，且必须是同步函数。
+		•Action：用于提交 mutation，而不是直接变更状态，可以包含任意异步操作。
+		•Module：允许将单一的 Store 拆分为多个 store 且同时保存在单一的状态树中。
+		Vue操作dom的方法？
+		1.$refs
+		2.$el
+		3.自定义指令
+		推荐：使用 v-for 的时候提供 key 属性，以获得性能提升。
+		<div v-for="item in items" :key="item.id">
+		  <!-- 内容 -->
+		</div>
+		//刷新页面
+		reload(){
+            window.location.reload();
+        }
+	
+	// fromCharCode键值用于字母排序重点
+	for(let i=65;i<= 90;i++){
+		// console.log(i)
+		let num=String.fromCharCode(i)
+		console.log(num)
+	}
+	4.第一次页面加载会触发哪几个钩子？
+	答：会触发 下面这几个beforeCreate, created, beforeMount, mounted 。
+	四、Vue组件间的参数传递
+	1.父组件与子组件传值
+	父组件传给子组件：子组件通过props方法接受数据;
+	子组件传给父组件：$emit方法传递参数
+	
+	2.非父子组件间的数据传递，兄弟组件传值
+	eventBus，就是创建一个事件中心，相当于中转站，可以用它来传递事件和接收事件。
+	
+	项目比较小时，用这个比较合适。（虽然也有不少人推荐直接用VUEX，具体来说看需求咯。技术只是手段，目的达到才是王道。）
+	
+	五、Vue的路由实现：hash模式 和 history模式
+	
+	hash模式：在浏览器中符号“#”，#以及#后面的字符称之为hash，用window.location.hash读取；
+	
+	特点：hash虽然在URL中，但不被包括在HTTP请求中；用来指导浏览器动作，对服务端安全无用，hash不会重加载页面。
+	
+	history模式：history采用HTML5的新特性；
+	
+	且提供了两个新方法：pushState（），replaceState（）可以对浏览器历史记录栈进行修改，以及popState事件的监听到状态变更。
+	1.css只在当前组件起作用
+	答：在style标签中写入scoped即可 例如：<style scoped  module></style>
+		 module
+	2.v-if 和 v-show 区别
+	答：v-if按照条件是否渲染，v-show是display的block或none；
+	
+	3.$route和$router的区别
+	答：$route是“路由信息对象”，包括path，params，hash，query，fullPath，matched，name等路由信息参数。
+		而$router是“路由实例”对象包括了路由的跳转方法，钩子函数等。
+	4.vue.js的两个核心是什么？
+	答：数据驱动、组件系统
+	5.vue几种常用的指令
+	答：v-for 、 v-if 、v-bind、v-on、v-show、v-else
+	
+	6.vue常用的修饰符？
+	答：.prevent: 提交事件不再重载页面；
+	.stop: 阻止单击事件冒泡；
+	.self: 当事件发生在该元素本身而不是子元素的时候会触发；
+	
+	.capture: 事件侦听，事件发生的时候会调用
+	
+	7.v-on 可以绑定多个方法吗？
+	答：可以
+	
+	8.vue中 key 值的作用？
+	答：当 Vue.js 用 v-for 正在更新已渲染过的元素列表时，它默认用“就地复用”策略。
+	
+	如果数据项的顺序被改变，Vue 将不会移动 DOM 元素来匹配数据项的顺序， 而是简单复用此处每个元素，并且确保它在特定索引下显示已被渲染过的每个元素。
+	
+	key的作用主要是为了高效的更新虚拟DOM。
+	
+	9.什么是vue的计算属性？
+	答：在模板中放入太多的逻辑会让模板过重且难以维护，在需要对数据进行复杂处理，且可能多次使用的情况下，尽量采取计算属性的方式。
+	
+	好处：①使得数据处理结构清晰；
+	
+	②依赖于数据，数据更新，处理结果自动更新；
+	
+	③计算属性内部this指向vm实例；
+	
+	④在template调用时，直接写计算属性名即可；
+	
+	⑤常用的是getter方法，获取数据，也可以使用set方法改变数据；
+	
+	⑥相较于methods，不管依赖的数据变不变，methods都会重新计算，但是依赖数据不变的时候computed从缓存中获取，不会重新计算。
+	
+	10.vue等单页面应用及其优缺点
+	答：优点：Vue 的目标是通过尽可能简单的 
+	API 实现响应的数据绑定和组合的视图组件，
+	核心是一个响应的数据绑定系统。
+	MVVM、数据驱动、组件化、轻量、简洁、高效、快速、模块友好。
+	缺点：不支持低版本的浏览器，最低只支持到IE9；
+	不利于SEO的优化（如果要支持SEO，建议通过服务端来进行渲染组件）
+	第一次加载首页耗时相对长一些；
+	不可以使用浏览器的导航按钮需要自行实现前进、后退。
+	图表
+	https://www.echartsjs.com/zh/index.html 网站
+	textarea禁止拉动resize: none;
+	Math.pow(3,3) 27 //求幂运算
+	弹性盒子
+	display:flex;
+	display:-webkit-box;//百度父级
+	-webkit-box-orient:horizontal;水平方向
+	-webkit-box-orient:vertical; 垂直方向
+	子级
+	-webkit-box-flex:1;//占几份
+	算法:用父级的宽度除以总份数得出去的每份去给予各自的份数
+	如果除不开最后一个最大
+	如果子集集合有固定宽度那么先拿总宽度减去固定的宽度再除以几份在平均分配。
+	2.js报错误分2种
+	1.编译性错误k
+	2.语法错误
+	Vuex
+	state ==>相当于组件中的data
+	getter==>相当于组件中的计算属性computed
+	mutation==>里面声明的是函数,这个函数对内不对外
+	action==>相当于组件中的事件函数methods
+	module==>组件
+	获取数值module==》getter==state
+	改变数值module==》action==》mutation==》state
+	//$store.state.str 获取
+	//移动端适配
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	eslint
+	"no-console": 1,
+	"no-mixed-spaces-and-tabs":["error", "smart-tabs"]
+	mapState,mapGetters,mapMutations,mapActions
+	Vue移动端适配
+	cnpm i lib-flexible --save
+	cnpm install postcss-loader postcss-px2rem --save
+	font-family: "Microsoft Yahei",Tahoma,sans-serif; 微软雅黑
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	pc框架网站
+	https://www.jianshu.com/p/c9a22c30cb2e
+	
+	
+	
+	eslint
+	npm run lint-fix 自动修复报错

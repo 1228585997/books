@@ -1,0 +1,55 @@
+﻿官网： https://vuex.vuejs.org
+
+官方的叫法 
+状态管理器 - 
+状态事件管理器
+
+
+中国 
+北京
+	大兴
+上海 :msg=msg天津props:['msg'] 深圳
+
+
+4块地  -  数据放在另外一块地上
+vuex 概念
+1.x 父子级数据交互实在是太庞大了
+数据 、 事件
+不要放在各自的位置上
+放在公用的位置上
+
+核心概念
+State - 数据 所有的原始数据
+Getter - 计算属性 computed 跟我的state 相关
+Getter - Module
+Mutation - 内部的事件 控制state
+Action - 事件 - Module
+Module - 外部的模版xxx.vue conponents (app.vue)
+Module -> Getter -> State
+	   -> Action -> Mutation
+xxx.vue 
+import {mapGetters} from 'vuex'	
+公共的地方 跟所有的模版都说了 我有什么
+但是我的模版还得和公共的地方说一下 我要什么
+对于我的所有的模版都可以按需引入
+父子级交互 达到最简单的状态
+
+store.commit('increment')
+  // this.$store.commit('事件名字(要对应)',params)
+真的用vuex的话 
+this.$store.state.值
+this.$store.getters.名字
+this.store.dispatch('事件名') 异步
+import {mapState,mapGetters,mapActions} from 'vuex' 
+mapGetters -> getters
+mapActions -> actions
+computed:{
+	...mapState(['数据'])
+	...mapGetters(['数据getters']),
+}
+methods:{
+	...mapActions(['事件actions']) 
+}
+
+
+

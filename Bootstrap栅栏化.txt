@@ -1,0 +1,299 @@
+栅栏系统:一行分12列
+.row
+.col-md-12
+.col-xs-12
+页面大块布局.container
+<div class="row">
+	 <div class="col-md-4"></div>
+	 <div class="col-md-4"></div>
+	 <div class="col-md-4"></div>
+</div>
+图片自动生成
+<img src="holder".js/100%*300">
+文本对齐
+text-left
+text-right
+text-center
+块标签对齐
+pull-left
+pull-right
+center-block 必须设置给自己加的标记类名上
+排版样式：
+h1 .page-header
+small
+p .head
+strong
+em
+p	
+文字的颜色
+p.text-muted 柔和色
+p.text-primary 浅蓝色
+p.text-danger 红色
+
+表格
+tr.active 灰
+tr.danger 红
+tr.warning 黄
+tr.success 绿
+表格样式
+table.table
+tabkle.table-hover
+table.table-bordered
+table.table-striped
+table.table-condensed
+
+响应式表格(水平滚动条)
+div.table-responsive
+表单样式
+Bootstrap  
+
+ui ->  设计 我们定义了一个风格
+
+我们已经把class 给你写好了
+咱们要做的就是 记住那些class 干嘛用的然后直接用就完事了
+
+twitter 起源于他
+
+bs2 <-> 全部浏览器都兼容 大
+bs3 <-> ie7x 不兼容 小
+
+依赖jquery 
+
+标题
+class h1 - h6
+可以用标签
+
+h1 = 36px
+h2 = 30px
+h3 = 24px
+h4 = 18px
+h5 = 14px
+h6 = 12px
+
+small副标题
+
+.lead   突出内容
+strong  粗体
+em i    斜体
+
+
+字体颜色 
+text-muted    减弱的
+text-primary  首要的
+text-success  成功
+text-danger   危险
+text-info     信息
+text-warning  警告
+
+list-unstyled 去掉默认样式
+
+list-inline 内联显示
+
+pre  针对多行代码的
+code 针对代码段的
+kbd  黑色风格的代码段
+
+&lt; &gt;
+
+容器 - div
+
+对位
+
+表格
+table class='table'
+	thead
+		tr
+			th
+	tbody
+		tr
+			th
+
+
+
+table-striped 斑马线
+table-bordered 让他有边框
+table-hover  让他触碰时有hover效果
+table-condensed 紧凑型表格
+table-responsive  响应式表格
+
+状态 就是背景颜色
+active 点击状态
+success 成功
+
+show/hide 显示和隐藏
+
+按钮
+<a href="#" class='btn btn-default' role='button'>按钮一</a>
+<button class='btn btn-default' type='submit'>按钮二</button>
+<input type="button" class='btn btn-default' value='按钮三'>
+
+<input type="button" class='btn btn-default btn-success' value='按钮三'>
+
+btn-success
+btn-info
+btn-danger
+btn-warning
+btn-primary
+btn-link
+
+按钮的尺寸大小
+btn-lg 大
+btn-sm 小
+btn-xs 超小
+
+.btn-block 是让按钮变成块级
+
+active 让按钮变成默认激活的状态
+
+disabled="disabled" 禁用状态
+
+bs基础 - 栅格系统
+他把屏幕分成了12等份 可以通过div 让他变成其中的几等份
+
+响应式 相应了几个状态
+屏幕的宽度
+
+col-xs-* 超小的屏幕 手机 (<768px)
+
+col-sm-* 小屏幕 平板 (>=768px)
+
+col-md-* 中等屏幕 笔记本（>=992px）
+
+col-lg-* 大屏幕 大桌面显示器 （>=1200px）
+表格 、 栅格系统
+bs - class 背
+
+大小写
+text-uppercase
+text-lowercase
+
+缩略语
+<abbr title='这个是解释'></abbr>
+
+引用
+blockquote  
+	p 谁的名言
+	footer 引用的是谁的话
+	city 名字 倾斜
+blockquote-reverse 右对齐
+
+
+图片的三种形式
+<img src="1.jpeg" alt='1.jpeg' width="200" class='img-rounded'>
+圆角
+
+<img src="1.jpeg" alt='1.jpeg' width="200" class='img-circle'>
+圆形
+<img src="1.jpeg" alt='1.jpeg' width="200" class='img-thumbnail'>
+照片样式的
+
+状态就是颜色
+
+表单 
+form
+	div-form-group 
+		label字
+		input form-control
+
+has-error    红色
+has-success  绿色
+has-warning  灰色
+
+
+div checkbox disabled
+label
+	input checkbox 文字 disabled
+
+禁止不让用
+disabled
+
+
+radio 单选框
+div radio disabled
+label
+	input radio disabled
+禁止不让用
+disabled
+
+form-inline <- 给from标签
+
+form - 小组件
+
+div - input-group
+	div - input-group-addon
+	input - form-control
+
+背景色
+
+<p class="bg-primary">哈哈哈哈哈哈哈哈</p>
+<p class="bg-success">哈哈哈哈哈哈哈哈</p>
+<p class="bg-info">哈哈哈哈哈哈哈哈</p>
+<p class="bg-warning">哈哈哈哈哈哈哈哈</p>
+<p class="bg-danger">哈哈哈哈哈哈哈哈</p>
+
+组件-
+一个元素干不了的事 需要一堆元素配合组成的一个东西
+
+带图标的按钮
+<button type='button' class='btn btn-default'>
+	<span class='glyphicon glyphicon-remove'></span>
+	你希望放入的文字
+</button>
+
+aria-hidden="true" 如果图标是装饰用的 就加上
+
+
+<div class='dropup' style="margin-top: 100px;">
+          <button type='button' class='btn btn-default dropdown-toggle' id='a1' data-toggle="dropdown">
+            点我啊
+            <span class="caret"></span>
+          </button>
+          <ul class='dropdown-menu' aria-labelledby='a1'>
+            <li><a href="#">星期一</a></li>
+            <li><a href="#">星期二</a></li>
+            <li><a href="#">星期三</a></li>
+            <li><a href="#">星期司</a></li>
+            
+          </ul>
+
+        </div>
+线
+<li role="separator" class="divider"></li>
+
+header
+dropdown-header
+
+disabled
+
+横向菜单
+btn-group-lg 超大
+btn-group-sm 小
+btn-group-xs 超小
+<div class='btn-group' role='group'>
+	<button type='button' class='btn btn-default'></button>
+</div>
+
+
+btn-group-vertical 垂直
+
+提示信息数
+徽章
+
+<a href="#">高强强<span class='badge'>40</span></a>
+<button class='btn btn-info'>
+  Message
+  <span class='badge'>210</span>
+</button>
+
+进度条
+
+
+
+
+
+
+
+
+
+
+

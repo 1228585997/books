@@ -1,0 +1,526 @@
+一、微信小程序
+本身来说 已经挺成熟了
+只要你会js css html玩起来就不难
+基本介绍：
+2016年 小程序 特别低调的出现
+2016 01 11
+微信公开课 - 张小龙（之父）- 应用号 被苹果给限制 - 改称为小程序
+关键词：触手可及、 用完即走
+2017 01 09 小程序正式发布 不过只面向企业
+2017 03 - 2017 04 个人开发者 公众号关联，那个时期 爆发性时期 黄金时期
+那个时候个人可以认证 比如你是微博大v
+现在的时候个人没法认证 小程序迭代速度基本上一个月一更新。
+2017 08 wsx脚本语言出现 诞生了模版的开发者
+2017 11 准予内嵌h5页面 绝对爆炸性的福利 门槛再次降低
+2017 12 自定义组件 可以使开发者 共享、复用、交流源代码
+注册一个：
+1.邮箱一个
+2.微信号一个
+3.手机号一个
+微信公众平台官网：
+https://mp.weixin.qq.com/
+如果自己用源代码玩 也可以就是比较麻烦 因为没有预览...
+*微信开发者工具 - 专门开发微信小程序
+https://developers.weixin.qq.com/miniprogram/dev/quickstart/basic/getting-started.html#%E5%AE%89%E8%A3%85%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7
+注册：
+bindconfirm //微信键盘事件
+企业用户
+发布
+所有人都能看
+个人用户 - 试玩
+小程序没法发布 / 只能自己玩
+申请账号：
+https://mp.weixin.qq.com/wxopen/waregister?action=step1
+注册
+设置 - 开发设置
+如果没有appid ： 好多功能受限
+有appid ： 咱们可以使用很多的功能
+创建项目 -
+小程序 本身不难 编码 、 调试 、 预览 、 提交
+js -> js 脚本语言
+wxml -> html 标签
+wxss -> css 层叠样式表
+project => 工具配置文件 - 编译配置、项目配置 、外观配置
+app.json - 公共配置文件 - 窗口表现、页面路径
+app.js 注册了一个 微信小程序
+ctrl + s 保存的时候 模拟器会默认刷新一次
+1)<a></a>
+2)open....
+有点像 vue + react的结合体
+微信小程序
+<navigator url=""></navigator>
+navigator ../leo/myleo
+1)navigator url='要跳转的页面'
+点击事件
+bindtap /....
+bindtap ='事件名'
+js->跳转 通过wx 在index.js写
+2)wx.navigateTo({
+url:'要跳转的页面'
+})
+css -> style
+wxss文件里面写
+数据结构 类似于 vue
+渲染模式 类似于 react
+如果改数据需要渲染
+this.setData({
+	
+})
+
+
+如果改数据不需要渲染
+this.data.xxx = ...
+
+里面的元素 不再是html里面的原生元素了
+
+view -> div
+text -> span
+<view wx:v-item=""></view>
+AppID(小程序ID)我自己的
+wx2472bda5c3464780
+如果想让别人看到你的小程序
+https://mp.weixin.qq.com/wxamp/user/manage?action=index&use_role=1&token=1952354876&lang=zh_CN
+用户身份 - 添加用户 - 给权限
+成员管理-添加成员 - 给权限
+"navigationBarBackgroundColor": "#000", //头部bar颜色
+"navigationBarTitleText": "leo的小程序页面", title文字
+"navigationBarTextStyle": "#fff" 头部bar的文字颜色
+----------------------------------------------------------------------------------
+二、小程序 如何诞生 - 开发 - appid - 
+
+标签说起 -> html这么叫的 
+
+组件
+
+view <-> div
+text <-> p
+image <-> img  有闭合了
+事件传参
+data-item="参照值"
+ev.target.dataset.item
+ev.target.dataset.index
+ev.detail.current //swiper
+div + css
+
+html
+
+<Leo></Leo> <-> 不认识的标签都会变成行内标签
+
+<div></div> <->不认识的标签都会变成行内标签
+
+v-show  display:none/block
+v-if    这个元素有或者没有
+
+数据驱动框架的一个通吃的使用方式 盯着数据看 不要老想着 操作dom
+
+微信的自定义属性
+wx:if='{{js的内容/data里面的数据}}' true 有 false 没有
+如果咱们想用data数据
+this.d"ata.xxxx
+wx:for='{{要循环的内容/数据}}'
+
+{{item}}
+{{index}}
+wx:key="index" 如果可以的话 最好给我们一个关键字
+
+*this 代表for 循环中item本身
+属性是唯一的 值会一直追随着你给予的key 从新渲染也会追随着原来的key，你内容动了 他也会跟着动。
+
+
+涉及到多循环 操一下心
+重点
+wx:for-index='自定义一个名称'; 
+wx:for-item='自定义一个名称'
+
+
+<block></block> 本身是一个包装元素，看不见摸不着的只支持属性，不会在页面进行渲染
+说白了 就是拿属性判断用的 给你渲染组件
+---------------------------------------------------------
+三、css3的时钟
+
+transform:rotate(deg)
+旋转
+
+html元素里面 原点都是在中心 
+transform-origin:left center
+
+表-转一圈 
+360度
+
+
+21 21deg
+60分钟  360度
+1分钟 6度
+
+12小时 - 360度
+1小时 30度
+
+你只要用到了data数据 {{放入数据就ok}} 没有数据的要求
+-----------------------------------------------------------------------------------------
+四、js 
+微信开发者工具 - 脚手架 - 自动配置
+
+App - Pages
+	- Pages
+
+app 有点类似于vuex 状态管理模式
+
+
+app全局 pages 都能访问到你的这个全局
+
+天然有这么个vuex 自动带了一个
+
+1.小程序 《-》 html
+
+1.wxml - html
+  wxss - css 
+  js   - js
+
+2.结构单纯
+App - pages
+
+app = getApp();
+
+
+3.开发过程 vue / angular / react 差不多
+*函数不能直接渲染出return 数据 要注意
+
+4.接口非常丰富 你想的到的都有
+扫码/ 指南针/加速器/获取网的状态
+
+小程序开发就是混合式开发 本质上就是套了个壳
+壳其实就是微信
+
+小程序本身也支持模块化开发
+common.js
+require('')
+
+输出 
+export const a =12;
+
+export default{
+	
+}
+只允许一个js里面有一个
+
+也支持es6的模块语法
+
+导入
+
+import {a} from ....
+import {a,c,d,f} from ....
+import json,{a,c,d...} from ....
+json.a,json.b,json.c,json.d
+
+导出
+
+export const a = 12;
+export {a,c,d,f}
+
+export default {a,b,c,d}
+
+原名 as 要变成的名字 
+
+rdm(0,255); -> 0 1 2 3 4... 255
+
+5-10
+
+Math.random(); 0 - 1(理论上有1 但是实际上不会出现1 )
+
+0 - 1 + 5
+
+3 ~ 7
+0~4 范围  最低是 3
+
+parseInt(min + Math.random()*(++max - min))''
+
+小程序开发 vue 模块式开发
+---------------------------------------------------------------
+五、生命周期
+vue、react、angular
+生命周期是什么？
+
+在js框架中，生命周期指的是特定功能时可以自动调用的函数方法。
+
+分两大块
+
+app  下面的
+pages下面的
+
+app
+------
+
+onLaunch -> 初始 激活小程序
+onShow -> 进入小程序前台的时候会触发
+onHide -> 进入小程序后台的时候会触发
+onError -> 报错的时候会触发的生命周期
+参数 、 看参数就能看到错误的本身
+pages
+
+onLoad -> 生命周期函数--监听页面加载
+一般来说获取后台数据 从从这个生命周期
+
+onReady ->生命周期函数--监听页面初次渲染完成
+组件都渲染 完毕 都能看到了 
+
+onShow-> 在ready 之前 load之后触发
+onHide->
+
+onUnload -> 页面卸载 点击左上角那个返回的小箭头就触发了
+
+onPullDownRefresh
+页面相关事件处理函数--监听用户下拉动作
+例如下拉刷新 下拉获取数据
+但是小程序默认不开启下拉的
+
+app.json 全局
+window:
+"enablePullDownRefresh":true
+
+局部 就是在pages -> json 
+ "enablePullDownRefresh": true
+ 一般就是加载用
+
+
+onReachBottom
+如果有滚动条 滚动到最下面会触发的 函数
+
+分享第一次  在分享2个群
+分享第二次  在分享1个群
+分享第三次  恭喜您获得了 10个g流量
+
+onShareAppMessage
+微信小程序分享的时候触发的生命周期
+
+wx.showModal
+wx.showToast
+
+wx.showNavigationBarLoading
+wx.hideNavigationBarLoading
+
+wx.setNavigationBarTitle
+
+------------------------------------------------------------------------------
+六、小程序如何去布局
+
+作用于 手机端 / ipad
+
+px一般情况下
+
+移动端 rem vw vh 响应式
+
+320 px 160px
+375 px 160px
+414 px 160px
+
+小程序开发 比较相对的单位时基本上不会使用px
+rpx <-> 相对的px单位
+只要是小程序 你的横屏永远都是750rpx
+竖屏？
+rpx专用在小程序里面的
+
+只要会rpx 然后只要会量图 只要会一些基本的布局 
+小程序就基本上能搞定了
+
+一般来说 小程序的设计图都是750pxs
+人家的设计图 就给成500px
+
+量出来的所有的东西 都乘以1.5呗 变成rpx 就ok
+1.5 倍
+
+250px * 1.5 =375rpx
+
+background: 不支持直接使用 背景图 
+
+
+必须用 网络图片 或者 base64
+
+image 可以的
+
+http://base64.xpcha.com/pic.html
+-------------------------------------------------------------------------
+七、函数传参
+
+要获取 有index值的组件上比较多
+
+传参数
+
+id=‘值’
+data-xxx=‘值’
+
+ev.target.id  x
+ev.target.dataset.xxx o
+
+留言删除系统
+
+1.输入内容
+2.发布 -》 如果没有内容提示一下
+	  -〉 如果有内容 那么就发布了一条新的 
+
+发布内容的input 的value 就清空了
+
+显示你发布的条数
+删除你该发布的条数的内容
+
+
+1.xxxxxx  删除
+
+
+wx:if
+wx:elif
+wx:elif
+wx:else
+
+
+一定要衔接
+--------------------------------------------------------------
+八、小程序的里面的事件
+拖拽
+bindtouchstart
+bindtouchmove
+bindtouchend
+ev.target.offsetLeft -> 获取组件offsetleft
+坐标点
+ev.changedTouches[0].clientX;
+ev.changedTouches[0].clientY;
+如何禁止小程序的下拉：重点
+"enablePullDownRefresh":false,
+"disableScroll":true
+事件冒泡
+在小程序里面 事件有两套 
+一个就是咱们bind 有事件冒泡机制
+另外一套就是 catch 阻止事件冒泡机制的
+他们两套拥有的事件是一样的。
+bind tap
+catch tap
+bindtouchstart
+catchtouchstart
+----------------------------------------------------------------
+九、小程序的动画实现
+CSS3 
+transition 
+(
+	可以有4个参数
+	过渡时间、过渡样式、过渡曲线、延时时间
+)
+animation
+{
+animation-name	
+规定需要绑定到选择器的 keyframe 名称。
+animation-duration	规定完成动画所花费的时间，以秒或毫秒计。
+animation-timing-function	规定动画的速度曲线。
+animation-delay	规定在动画开始之前的延迟。
+animation-iteration-count	规定动画应该播放的次数。
+animation-direction	规定是否应该轮流反向播放动画。
+}
+
+
+小程序自带的动画 
+animation='{{dataName}}'
+
+this.setData({
+	dataName:wx.createAnimation({
+		duration:
+		deley:....
+	}).width().height().scale().step({
+		duration:
+		deley:....
+	}).scale()
+})
+//尾部导航
+
+ "tabBar": {
+	" color":"#000"//文字颜色
+	 "selectedColor":""//选中时的颜色
+	 backgroundColor:'#000' tab的背景色
+	 "borderStyle":"black", tabbar上边框的颜色仅支持black和white
+    "list": [{  //最少2个最多5个
+      "pagePath": "pages/index/index",
+      "text": "首页",
+	   "iconPath":'imgars/1.jpg'//图标路径
+	    "selectedIconpath"//选中图片的颜色
+    }, {
+      "pagePath": "pages/logs/logs",
+      "text": "日志"
+    }]
+  },
+ "debug":true
+   tabBar  指底部的 导航配置属性
+ 
+        color  未选择时 底部导航文字的颜色
+ 
+        selectedColor  选择时 底部导航文字的颜色
+ 
+        borderStyle  底部导航边框的样色（注意 这里如果没有写入样式 会导致 导航框上边框会出现默认的浅灰色线条）
+ 
+        list   导航配置数组
+ 
+        selectedIconPath 选中时 图标路径
+ 
+        iconPath 未选择时 图标路径
+ 
+        pagePath 页面访问地址
+ 
+        text  导航图标下方文字
+"tabBar": {
+    "color": "#a9b7b7",
+    "selectedColor": "#11cd6e",
+    "borderStyle": "white",
+    "list": [
+      {
+        "selectedIconPath": "image/tab_home_select.png",
+        "iconPath": "image/tab_home.png",
+        "pagePath": "pages/home/home",
+        "text": "首页"
+      },
+      {
+        "selectedIconPath": "image/tab_msg_select.png",
+        "iconPath": "image/tab_msg.png",
+        "pagePath": "pages/message/message",
+        "text": "消息"
+      },
+      {
+        "selectedIconPath": "image/tab_me_select.png",
+        "iconPath": "image/tab_me.png",
+        "pagePath": "pages/my/my",
+        "text": "我的"
+      }
+    ]
+  }
+
+事件：bindlongpress="cg1" 长按不放
+
+
+作件 conponents 文件夹
+
+
+引入组件  '组件名' 路径
+
+按钮去边框线
+button::after{
+	border:none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

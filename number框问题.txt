@@ -1,0 +1,14 @@
+/* input在type="number"时的上下小箭头移出 chrome*/
+			input::-webkit-outer-spin-button,
+			input::-webkit-inner-spin-button {
+				-webkit-appearance: none;
+			}
+			/* firefox*/
+			input[type="number"] {
+				-moz-appearance: textfield;
+			}
+如何修改input框的placeholder字体颜色以及大小
+input::-webkit-input-placeholder{
+  color: #B8B8B8;
+  font-size: 0.3rem
+  }

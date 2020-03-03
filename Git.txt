@@ -1,0 +1,75 @@
+创建管理可以指定仓库(版本库) 项目存放
+git init
+ 
+ 加入版本管理 清单 向git里面放内容的
+git add 文件名
+git add .
+
+提交
+git commit  -m ‘备注’
+查看修改过的查看清单内容
+git status
+查看版本库内容
+git log
+
+添加到远程仓库
+git push  地址 分支名
+在本地声明一个远程地址的名字
+git remote add   名字  地址
+克隆远程
+git clone 地址
+远程更新本地
+git pull 地址 分支名
+版本日志扩展命令
+git log  扩展命令--pretty=oneline
+
+切换版本(还原版本)回退操作
+git reset --hard HEAD
+git reset --hard HEAD^  退回到上一个版本
+
+痕迹(查看历史记录)
+git reflog  
+拿到你要回去的那个版本
+git reset --hard 回到版本的哈希值
+
+切换分支
+git checkout name 
+
+创建分支
+git branch name 
+
+撤销
+git checkout -- 1.txt
+在add之后
+用git reset HEAD 文件名
+在 git add 回去
+或者 git checkout 文件名
+删除
+git rm  文件夹名
+如何撤销回到刚才的版本
+git reset HEAD 文件名
+撤销清单回到上个版本
+git checkout -- fliename
+删除之后放入版本库
+git commit -m '描述'
+git 删除分支git branch -d
+ 分支名 
+ git查看分支git branch
+
+
+合并分支
+git merge 分支名字
+
+配置 账号密码公钥  push 需要用 ssh
+ssh-keygen -t rsa -c  邮箱地址
+
+
+提交步骤
+1.git add 项目名字  如 git add 1.txt
+2.git commit -m '描述' 提交
+3.git pull 拉去远程数据
+4.git push 提交到远程去
+
+git冲突
+git配置
+https://blog.csdn.net/AdminGuan/article/details/100660347

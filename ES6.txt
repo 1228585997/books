@@ -1,0 +1,361 @@
+es6
+es6 es2015
+介绍ecma
+ECMAscript -> ecma / es
+actionscript -> flash
+1996 es1   提出诞生 网景浏览器 我们支持javascript
+1997 es2   提出来 ie6 我们也支持 网景也支持 浏览器大战
+1998 es3   提出来 ie6 -》支持 windows 系统 -》sunos 网景 不行-》 火狐
+2007 es4   提出来 做的太激进 我们没发支持
+2008 es3.1 退化版 html5  -harmonious
+2009 es5   草案
+2010 es5   通过   
+2011 es6   草案
+2013 es6   通过
+2014       chrome  30% html5 全面支持 - 移动端ok
+2015 es6   chrome  60% 火狐 30%
+2016 es6   chrome  90%+
+es6/es5 后台 chrome es5/es6 -》 nodejs
+结构赋值 跟后面的结构一样就可以
+
+json  {key对应后面的key}
+key - value
+
+1.声明方式 - let ／ const
+let - 变量不允许重复声明  允许重复赋值 可以防治变量泄露
+const - 常量 变量不允许重复声明，也不允许重复赋值
+var的使用:
+    1)使用var存在无意义的变量提升
+    2)如果某个变量的值不希望被修改,无法进行设置
+    3)可以重复进行声明操作
+    4)全局变量会自动成为顶级对象的属性
+let的使用:
+    1)无法重复声明
+    2)没有变量的提升
+    3)全局变量不会成为顶级对象的属性
+    4)会形成一个块级作用域,使用let声明的变量只能在块级作用域内有效
+    5)使用let声明的变量会形成一个暂时性死区(也就是说这个块级作用域内有了let定义变量,这个变量就跟这个作用域块形成了一个绑定,不会再受外界的影响)
+const的使用:
+    1)通过const声明的是常量,不是变量
+    2)一旦变量被声明,他的值就不能被修改(内存中的地址不能被修改)
+    3)同样不存在变量的声明提升,同样存在暂时性死区,同样不能重复声明
+数组
+1)Array.from()：方法用于将两类对象转为真正的数组：类似数组的对象（array-like object）和可遍历（iterable）的对象（包括 ES6 新增的数据结构 Set 和 Map）。
+2)Array.of():将一组值,转换为数组
+3)数组实例的find():数组实例的find方法，用于找出第一个符合条件的数组成员。(返回的是值)
+4)findIndex():数组实例的findIndex方法的用法与find方法非常类似，返回第一个符合条件的数组成员的位置-1
+ES6 提供了新的数据结构 Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。
+Set本身是一个构造函数，用来生成 Set 数据结构。
+php java - 常量
+变量 随时可以变
+常量 你一旦定义了 那么就不能改变了
+var wang_time= null
+var time = null;//wangkai
+document.onclick = function(){time = set..}
+var time = function(){}//zenghuijie
+重点字符串方法
+charCodeAt 获取编码
+String.fromCharCode(编码) 能让编码转成字符
+\u4e00 - \u9fa5 //判断中文正则
+1.fromCharCode/CharCodeAt 
+2.repeat 重复几次
+3.includes
+4.startsWith
+5.endsWith
+
+repeat 接受1个参数 参数就是重复几次咱们的字符串
+includes 有点像indexOf
+查找会返回 布尔值
+第一个参数 是要找的内容
+第二个参数 从第几位开始
+
+startsWith 起始
+开头如果是你放入的第一个参数 就是true 不是就false
+第二个参数 从第几位开始
+
+endsWith 结束位置
+第二个参数 从第几位结束
+
+es6的字符串 变成了 ``  1左边那个玩意
+${} 模版
+
+find 第一个参数 循环出来 数组所有的内容
+	  第二个参数 循环出来 下标
+		第三个参数 循环出来 数组本身
+
+x = x => x;
+x = (x,y,z) => {
+	console.log(1)
+} 
+var x = function(x){
+	return x;
+};
+
+延展参数 可以延展任何类型 array  string number json
+延展参数 如果我传了 参数 那么 就执行我的参数 如果我没传参数 那么 参数就为我延展的值
+
+扩展运算符 函数中的参数用 …x
+代表 实参为数组 进来的 x变量
+在数组中可以起到合并数组的作用
+数组的方法
+Array.from()
+Arry.of()Array.of方法用于将一组值，转换为数组。
+Array.of(3, 11, 8) // [3,11,8]
+Array.of(3) // [3]
+Array.of(3).length // 1
+Array.isArray()判断是不是数组
+let a=[]
+console.log(a instanceof Array)
+生成器函数
+function* 函数名(){
+}
+
+函数名.next(); 调用
+yield 有点类似于return
+
+{}可以有个set 和 get 方法
+
+方法后 放名字 
+如果执行 这个名字 不赋值的情况下 会走 get
+如果赋值 就执行 set 只最高支持一个参数
+
+2.字符串
+	1.fromCharCode / charCodeAt
+	2.repeat
+	3.includes
+	4.startsWith
+   5.endsWith
+2.1 模版{}
+
+2.2 数组方法 find
+
+3.函数 
+3.1箭头函数 
+3.2延展参数 箭头函数没有arguments
+3.3扩展运算符 …
+	- 数组合并 
+	- 【…元素选择】
+   	-  参数规范
+数组拷贝
+var arr = [1, 2, 3];
+var arr2 = [...arr]; // 等同于 arr.slice()
+arr2.push(4); 
+console.log(arr2)//[1, 2, 3, 4]
+demo:es6-简易选项卡[]
+
+4.生成器函数
+4.1 yield
+
+对象中的 set(){} 
+		 get(){}
+jquery ->bind 绑定事件  addevent
+
+bind -》 call
+任何函数都可以用 call 调用自己 call 的第一个参数 就是 函数的this 第二个参数之后就是函数的行参
+bind es5
+ 任何函数都可以用 bind 调用自己 bind 的第一个参数 就是 函数的this 第二个参数之后就是函数的行参 但是不会调用自己
+
+es6 之前的一个状态
+类  小弟
+原型 prototype 方法
+原型链 __proto__
+
+window object - array  - [1,2,3].toString()
+						number
+
+aaa.prototype = new bbb();
+
+你可以通过类 找到其原型
+
+window  - string - substring／indexof
+        - number - tostring
+        - function - call／bind
+    		- array   - concat join 
+			  。。。。
+constructor 这个方法能精准的告诉 你是什么类
+Object.prototype.toString.call
+bind
+可以使所有的方法 通用
+
+class 名字{
+	constructor(){
+
+   }
+
+}
+
+
+1.{}块状 块级作用域 可以解决 密封空间问题
+选项卡
+
+2.  结构赋值 - 模式匹配 数组 和 json
+2.1 解析接口
+2.2 json 使用结构赋值 
+2.3 结构赋值 函数
+2.4 bind 使用
+
+3. 面向对象
+类
+原型 
+原型链
+es6 的 class 
+继承 extends
+super
+es6 jquery
+es6 面向对象的选项卡
+ export和import。
+ export命令用于规定模块的对外接口，
+ import命令用于输入其他模块提供的功能。
+export default{}
+
+jquery
+$(‘.div’).addClass();
+$(‘#div’).removeClass();
+$(‘div’).bind(‘click’,function(){
+
+})
+map
+set
+symbol
+map
+
+一.字符串篇
+字符串模版 深入
+1.模版里面可以里面放入函数及传参 
+1.1 数组的map 深解
+map  用法跟find ／ findIndex 差不多
+返回的不一样
+最后 会返回大数组
+2.标签模版
+3.模板字符串嵌套
+4.字符串的String.raw``方法 
+可以取消转义
+
+二.number篇
+1.什么叫做二进制？
+15
+1 2 4 8 16 32
+1  1  1  1 0  0  0  0  0
+2.2进制 0b   
+0b后面放真正的二进制 但是反着写
+
+3.特殊运算  位运算 | &  次方运算<<  >> 
+|| 或 
+&& 和
+|  &位运算
+运算优先级 没有 + - * ／ 高
+
+3<<2
+3*2*2
+
+
+4.Number.isInteger
+判断是否适一个整数 如果是 就返回true 不是 就是false
+
+5.isNaN parseInt parseFloat
+6.Math.pow()
+几次幂
+Math.pow(4,4)
+4*4*4*4
+
+
+三.方法篇
+1.in
+‘属性’ 是否在 该对象上
+2.for of
+{key,value}
+键值
+key
+
+3.set -> add  / has / size / keys / values ／delete ／clear ／entries
+set - []
+[1,1,1,1]
+set[1]
+
+特性 禁止重复
+add 添加数据  set.add()
+has 查找 有没有 该数据
+size 类似于length 指的是长度 set.size
+keys／values 一个东西keys() set.keys()
+delete 放入你删除的值
+clear 直接清除
+和数组是好基友
+
+4.map 用法 set ／get ／ has ／ delete ／ clear 接收数组参数
+
+不允许重复存key
+
+demo  
+1.数组去重 
+2.set版选项卡
+
+
+
+一.Promise篇
+Pending、Resolved(决定)、Rejected(拒绝)
+catch
+race 竞速方法
+all  规整方法 
+
+demo：
+1.显示隐藏
+2.es6版自动选项卡
+3.promise版 ajax
+4.promise版 登录
+
+二.webWork
+postMessage
+onmessage
+
+简易服务器 多线程的任务清单
+
+
+三.回顾篇 
+map的整体赋值
+疑问。。。　
+
+
+
+Promise 是个对象
+类似 一个事情 
+事情 就会 有 成功 或者 失败
+只要触发一个  这个函数就完成了自己任务
+
+one  只执行一次
+then(成功函数 , 失败的函数)
+then(成功函数).catch( 失败的函数)
+
+promise 厉害之处就是能无限的回调
+
+抛出 异常throw ‘出大事了 下面就别之行了’
+console.error();
+console.warn();
+
+race ->只看第一个promise 成功就成功 ，失败就失败
+all    ->要不然就是全胜 要不然就是 失败
+
+wamp->
+w:windows
+a:aphte
+m:mysql
+p:php
+
+mamp->
+m:mac
+
+订外卖
+
+手机 o
+软件 o
+订单 o
+接不接你的单
+订单发送来
+
+同步 一个事办完之前 后面的事不允许去办 false
+异步 所有的事 可以同事开工 true
+
+
+
+
+
+
